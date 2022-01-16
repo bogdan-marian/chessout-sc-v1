@@ -10,4 +10,6 @@ cd my-contract
 cargo new my-contract
 mv my-contract/ wasm/
 
+# add the meta crate
+cargo new meta
 ```
