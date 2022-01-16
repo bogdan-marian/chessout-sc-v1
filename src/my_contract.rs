@@ -9,7 +9,12 @@ pub trait MyContract {
 
     #[init]
     fn init(&self) {
-        // no code required for now
-        // we just want to build via erdpy
+        let _my_address: ManagedAddress = self.blockchain().get_caller();
+        self.set_owner(&_my_address);
     }
+
+    // <storage section>
+    
+    #[storage_set("owner")]
+    fn set_owner(&self, address: &ManagedAddress);
 }
