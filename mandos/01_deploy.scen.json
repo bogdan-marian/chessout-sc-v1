@@ -8,6 +8,10 @@
         "address:owner": {
           "nonce": "0",
           "balance": "0"
+        },
+        "address:client": {
+          "nonce": "0",
+          "balance": "1000"
         }
       },
       "newAddresses": [
@@ -49,9 +53,15 @@
           "nonce": "*",
           "balance": "0",
           "storage": {
-              "str:owner": "address:owner"
+            "str:owner": "address:owner"
           },
           "code": "file:../output/my-contract.wasm"
+        },
+        "address:client": {
+          "nonce": "*",
+          "balance": "1000",
+          "storage": {},
+          "code": ""
         }
       }
     }
