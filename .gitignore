@@ -5,3 +5,5 @@
 
 # The erdpy output
 output
+deploy-devnet.interaction.json
+erdpy.data-storage.json
