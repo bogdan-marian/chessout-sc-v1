@@ -1,0 +1,39 @@
+{
+  "name": "create nfts",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "01_deploy.scen.json"
+    },
+    {
+      "step": "setState",
+      "currentBlockInfo": {
+        "blockTimestamp": "100,000"
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "create-NFT-1",
+      "tx": {
+        "from": "address:owner",
+        "to": "sc:my-contract",
+        "function": "createNft",
+        "arguments": [
+          "str:NFT 1",
+          "5000",
+          "str:www.mycoolnft.com/nft1.jpg",
+          "500"
+        ],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": ["1", "1"],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "name": "my_contract",
+  "name": "deploy",
   "comment": "init scenario",
   "steps": [
     {
