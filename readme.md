@@ -24,4 +24,5 @@ it's the nonce of the nft you just created :) It will start at 1 and increase fo
 ## random notes
 testnet-bogdan: `erd1mhhnd3ux2duwc9824dhelherdj3gvzn04erdw29l8cyr5z8fpa7quda68z`
 erdpy --verbose wallet derive testnet-bogdan.pem --mnemonic
-<some mnemonic words on the second line>
+
+[token name restrictions](https://docs.elrond.com/developers/esdt-tokens/#parameters-format)
