@@ -14,7 +14,7 @@ TOKEN_REVERSE=$(xxd -r -p <<< "$TOKEN_NAME_HEX")
 ISSUE_TOKEN_ARGUMENTS="0 ${TOKEN_NAME_HEX} 5"
 
 
-haveFun(){
+listArgValues(){
     echo "${TOKEN_NAME}"
     echo "${TOKEN_NAME_HEX}"
     echo "${TOKEN_REVERSE}"
@@ -22,7 +22,9 @@ haveFun(){
 }
 
 deploy() {
-    erdpy --verbose contract deploy --project=${PROJECT} --recall-nonce --pem=${ALICE} --gas-limit=500000000 --arguments 0 --send --outfile="${MY_LOGS}/deploy-devnet.interaction.json" --proxy=${PROXY} --chain=${CHAINID} || return
+    erdpy --verbose contract deploy --project=${PROJECT} --recall-nonce --pem=${ALICE} \
+      --gas-limit=600000000 --arguments 0 --send --outfile="${MY_LOGS}/deploy-devnet.interaction.json" \
+      --proxy=${PROXY} --chain=${CHAINID} || return
 
     TRANSACTION=$(erdpy data parse --file="${MY_LOGS}/deploy-devnet.interaction.json" --expression="data['emitted_tx']['hash']")
     ADDRESS=$(erdpy data parse --file="${MY_LOGS}/deploy-devnet.interaction.json" --expression="data['emitted_tx']['address']")
