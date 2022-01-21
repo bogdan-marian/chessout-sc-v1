@@ -1,6 +1,6 @@
 PROJECT="${PWD}"
-# ALICE="${PROJECT}/wallets/users/alice.pem"
-ALICE="${PROJECT}/wallets/users/testnet-bogdan.pem"
+ALICE="${PROJECT}/wallets/users/alice.pem"
+# ALICE="${PROJECT}/wallets/users/testnet-bogdan.pem"
 ADDRESS=$(erdpy data load --key=address-devnet)
 DEPLOY_TRANSACTION=$(erdpy data load --key=deployTransaction-devnet)
 PROXY=https://devnet-gateway.elrond.com
