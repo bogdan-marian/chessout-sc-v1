@@ -7,6 +7,8 @@
 
 # The erdpy output
 output
-deploy-devnet.interaction.json
-erdpy.data-storage.json
 /wallets/users/testnet-bogdan.pem
+
+# interaction logs
+interaction-logs
+erdpy.data-storage.json
