@@ -26,3 +26,8 @@ testnet-bogdan: `erd1mhhnd3ux2duwc9824dhelherdj3gvzn04erdw29l8cyr5z8fpa7quda68z`
 erdpy --verbose wallet derive testnet-bogdan.pem --mnemonic
 
 [token name restrictions](https://docs.elrond.com/developers/esdt-tokens/#parameters-format)
+
+owner: `erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th`
+contract: `erd1qqqqqqqqqqqqqpgqy5u6zj9ac0ar4e2ed2vtvltahtpnxy85d8ss528g22`
+token: `TEST001-75f6bd`
+current problem: `too much gas provided: gas needed = 3124104, gas remained = 543283186`
