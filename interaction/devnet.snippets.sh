@@ -8,10 +8,12 @@ CHAINID=D
 MY_LOGS="interaction-logs"
 
 #ISSUE_COST_HEX=$(echo -n 3 | xxd -p)
-TOKEN_NAME="TEST001"
+TOKEN_NAME="TEST001 token name"
 TOKEN_NAME_HEX=$(echo -n ${TOKEN_NAME} | xxd -p)
 TOKEN_REVERSE=$(xxd -r -p <<< "$TOKEN_NAME_HEX")
-ISSUE_TOKEN_ARGUMENTS="0 ${TOKEN_NAME_HEX} 5"
+TOKEN_TICKER="TEST001"
+TOKEN_TICKER_HEX=$(echo -n ${TOKEN_TICKER} | xxd -p)
+ISSUE_TOKEN_ARGUMENTS="0x${TOKEN_NAME_HEX} ${TOKEN_TICKER_HEX}"
 
 
 listArgValues(){
@@ -23,7 +25,7 @@ listArgValues(){
 
 deploy() {
     erdpy --verbose contract deploy --project=${PROJECT} --recall-nonce --pem=${ALICE} \
-      --gas-limit=600000000 --arguments 0 --send --outfile="${MY_LOGS}/deploy-devnet.interaction.json" \
+      --gas-limit=600000000 --send --outfile="${MY_LOGS}/deploy-devnet.interaction.json" \
       --proxy=${PROXY} --chain=${CHAINID} || return
 
     TRANSACTION=$(erdpy data parse --file="${MY_LOGS}/deploy-devnet.interaction.json" --expression="data['emitted_tx']['hash']")
@@ -37,7 +39,7 @@ deploy() {
 }
 
 issueToken() {
-    erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${ALICE} --gas-limit=50000000 --function="issueToken" \
+    erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${ALICE} --gas-limit=600000000 --function="issueToken" \
       --arguments ${ISSUE_TOKEN_ARGUMENTS}  \
       --proxy=${PROXY} --chain=${CHAINID} --send \
       --outfile="${MY_LOGS}/issueToken.json"
