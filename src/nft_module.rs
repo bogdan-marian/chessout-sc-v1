@@ -115,7 +115,7 @@ pub trait NftModule {
             amount: selling_price,
         });
 
-        Ok(2)
+        Ok(nft_nonce)
     }
 
     fn require_token_issued(&self) -> SCResult<()> {
