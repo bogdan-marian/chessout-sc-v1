@@ -9,7 +9,7 @@
           "nonce": "0",
           "balance": "0"
         },
-        "address:client": {
+        "address:buyer": {
           "nonce": "0",
           "balance": "1000"
         }
@@ -57,7 +57,7 @@
           },
           "code": "file:../output/my-contract.wasm"
         },
-        "address:client": {
+        "address:buyer": {
           "nonce": "*",
           "balance": "1000",
           "storage": {},

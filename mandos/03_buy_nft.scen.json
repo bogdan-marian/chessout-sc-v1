@@ -1,0 +1,75 @@
+{
+  "name": "buy nft",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "02_create_nft.scen.json"
+    },
+    {
+      "step": "scCall",
+      "txId": "buy-nft-wrong-amount",
+      "tx": {
+        "from": "address:buyer",
+        "to": "sc:my-contract",
+        "egldValue": "400",
+        "function": "buyNft",
+        "arguments": [
+          "1"
+        ],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Invalid amount as payment",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "buy-nft-wrong-requested-nonce",
+      "tx": {
+        "from": "address:buyer",
+        "to": "sc:my-contract",
+        "egldValue": "500",
+        "function": "buyNft",
+        "arguments": [
+          "3"
+        ],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Invalid nonce or NFT was already sold",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "buy-nft-1",
+      "tx": {
+        "from": "address:buyer",
+        "to": "sc:my-contract",
+        "egldValue": "500",
+        "function": "buyNft",
+        "arguments": [
+          "1"
+        ],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}
