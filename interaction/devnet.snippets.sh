@@ -95,8 +95,3 @@ getTokenId() {
     | tee "${MY_LOGS}/getTokenId.txt";  `# log to file and also to standard out`\
     echo ""
 }
-
-
-
-
-
