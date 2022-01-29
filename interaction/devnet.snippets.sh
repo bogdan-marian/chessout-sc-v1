@@ -18,6 +18,8 @@ TOKEN_TICKER="TEST001"
 TOKEN_TICKER_HEX=$(echo -n ${TOKEN_TICKER} | xxd -p)
 ISSUE_TOKEN_ARGUMENTS="0x${TOKEN_NAME_HEX} 0x${TOKEN_TICKER_HEX}"
 
+GAS_LIMIT="60000000"
+
 listArgValues() {
   echo "${MINT_COST}"
   echo "${MINT_COST_HEX}"
@@ -31,7 +33,7 @@ listArgValues() {
 
 deploy() {
   erdpy --verbose contract deploy --project=${PROJECT} --recall-nonce --pem=${ALICE} \
-    --gas-limit=60000000 --send --outfile="${MY_LOGS}/deploy-devnet.interaction.json" \
+    --gas-limit=${GAS_LIMIT} --send --outfile="${MY_LOGS}/deploy-devnet.interaction.json" \
     --proxy=${PROXY} --chain=${CHAINID} || return
 
   TRANSACTION=$(erdpy data parse --file="${MY_LOGS}/deploy-devnet.interaction.json" --expression="data['emitted_tx']['hash']")
@@ -66,4 +68,10 @@ getTokenId() {
     | xxd -r -p                         `# convert from hex to string`\
     | tee "${MY_LOGS}/getTokenId.txt";  `# log to file and also to standard out`\
     echo ""                             `# ad extra new line so the output is on different line the current prompt`
+}
+
+createNft() {
+  CURRENT_TIME=$(date)
+  erdpy --verbose contract call ${ADDRESS}
+  --recall-nonce --pem=${ALICE} --
 }
