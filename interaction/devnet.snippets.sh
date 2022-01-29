@@ -31,7 +31,7 @@ listArgValues() {
 
 deploy() {
   erdpy --verbose contract deploy --project=${PROJECT} --recall-nonce --pem=${ALICE} \
-    --gas-limit=600000000 --send --outfile="${MY_LOGS}/deploy-devnet.interaction.json" \
+    --gas-limit=60000000 --send --outfile="${MY_LOGS}/deploy-devnet.interaction.json" \
     --proxy=${PROXY} --chain=${CHAINID} || return
 
   TRANSACTION=$(erdpy data parse --file="${MY_LOGS}/deploy-devnet.interaction.json" --expression="data['emitted_tx']['hash']")
@@ -45,7 +45,7 @@ deploy() {
 }
 
 issueToken() {
-  erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${ALICE} --gas-limit=600000000 --function="issueToken" \
+  erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${ALICE} --gas-limit=60000000 --function="issueToken" \
     --value ${MINT_COST} \
     --arguments ${ISSUE_TOKEN_ARGUMENTS} \
     --proxy=${PROXY} --chain=${CHAINID} --send \
