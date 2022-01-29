@@ -135,6 +135,22 @@ pub trait NftModule {
         Ok(())
     }
 
+    #[only_owner]
+    #[endpoint(setLocalRoles)]
+    fn set_local_roles(&self) -> SCResult<AsyncCall> {
+        self.require_token_issued()?;
+
+        Ok(self
+            .send()
+            .esdt_system_sc_proxy()
+            .set_special_roles(
+                &self.blockchain().get_sc_address(),
+                &self.nft_token_id().get(),
+                (&[EsdtLocalRole::NftCreate][..]).into_iter().cloned(),
+            )
+            .async_call())
+    }
+
     // storage
     #[view(getTokenId)]
     #[storage_mapper("nftTokenId")]

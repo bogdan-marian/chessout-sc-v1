@@ -19,6 +19,7 @@ TOKEN_TICKER_HEX=$(echo -n ${TOKEN_TICKER} | xxd -p)
 ISSUE_TOKEN_ARGUMENTS="0x${TOKEN_NAME_HEX} 0x${TOKEN_TICKER_HEX}"
 
 GAS_LIMIT="60000000"
+GAS_SMALL="50000000"
 
 listArgValues() {
   echo "${MINT_COST}"
@@ -54,20 +55,16 @@ issueToken() {
     --outfile="${MY_LOGS}/issueToken.json"
 }
 
+setLocalRoles(){
+  erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${ALICE} \
+    --gas-limit=60000000 --function="setLocalRoles" \
+    --proxy=${PROXY} --chain=${CHAINID} --send\
+    --outfile="${MY_LOGS}/setLocalRoles.json"
+}
+
 getTokenIdSimple() {
   erdpy --verbose contract query ${ADDRESS} --function="getTokenId" \
     --proxy=${PROXY}
-}
-
-getTokenId() {
-  erdpy --verbose contract query ${ADDRESS} --function="getTokenId" \
-    --proxy=${PROXY} \
-    | tee "${MY_LOGS}/getTokenId.json"  `# log to file and also to standard out`\
-    | grep hex                          `# select the hex line`\
-    | awk -F "\"" '{print$4}'           `# split by quotation char`\
-    | xxd -r -p                         `# convert from hex to string`\
-    | tee "${MY_LOGS}/getTokenId.txt";  `# log to file and also to standard out`\
-    echo ""                             `# ad extra new line so the output is on different line the current prompt`
 }
 
 createNft() {
@@ -81,9 +78,25 @@ createNft() {
   CREATE_ARGS="0x${NFT_NAME_HEX} ${ROYALTIES} 0x${NFT_URL_HEX} ${SELLING_PRICE}"
 
   erdpy --verbose contract call ${ADDRESS} \
-  --recall-nonce --pem=${ALICE} --gas-limit=${GAS_LIMIT} \
+  --recall-nonce --pem=${ALICE} --gas-limit=${GAS_SMALL} \
   --function="createNft" \
   --arguments ${CREATE_ARGS} \
   --proxy=${PROXY} --chain=${CHAINID} --send \
   --outfile="${MY_LOGS}/createNft.json"
 }
+
+getTokenId() {
+  erdpy --verbose contract query ${ADDRESS} --function="getTokenId" \
+    --proxy=${PROXY} \
+    | tee "${MY_LOGS}/getTokenId.json"  `# log to file and also to standard out`\
+    | grep hex                          `# select the hex line`\
+    | awk -F "\"" '{print$4}'           `# split by quotation char`\
+    | xxd -r -p                         `# convert from hex to string`\
+    | tee "${MY_LOGS}/getTokenId.txt";  `# log to file and also to standard out`\
+    echo ""
+}
+
+
+
+
+
