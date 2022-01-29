@@ -136,7 +136,7 @@ pub trait NftModule {
     }
 
     // storage
-
+    #[view(getTokenId)]
     #[storage_mapper("nftTokenId")]
     fn nft_token_id(&self) -> SingleValueMapper<TokenIdentifier>;
 

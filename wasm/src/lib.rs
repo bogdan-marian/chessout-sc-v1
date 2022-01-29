@@ -11,6 +11,7 @@ elrond_wasm_node::wasm_endpoints! {
         callBack
         createNft
         getCounter
+        getTokenId
         increment
         issueToken
     )

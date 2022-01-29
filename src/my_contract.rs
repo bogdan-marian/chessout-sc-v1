@@ -74,4 +74,6 @@ pub trait MyContract :nft_module::NftModule{
     #[view(getCounter)]
     #[storage_mapper("counter")]
     fn counter(&self) -> SingleValueMapper<u16>;
+
+
 }
