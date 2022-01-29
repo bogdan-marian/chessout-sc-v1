@@ -71,7 +71,19 @@ getTokenId() {
 }
 
 createNft() {
-  CURRENT_TIME=$(date)
-  erdpy --verbose contract call ${ADDRESS}
-  --recall-nonce --pem=${ALICE} --
+  CURRENT_TIME=$(date +%s)
+  NFT_NAME=$(echo -n "NFT-${CURRENT_TIME}")
+  NFT_NAME_HEX=$(echo -n ${NFT_NAME} | xxd -p)
+  ROYALTIES="5000"
+  NFT_URL=$(echo -n "www.mycoolnft.com/${NFT_NAME}")
+  NFT_URL_HEX=$(echo -n ${NFT_URL} | xxd -p)
+  SELLING_PRICE="500"
+  CREATE_ARGS="0x${NFT_NAME_HEX} ${ROYALTIES} 0x${NFT_URL_HEX} ${SELLING_PRICE}"
+
+  erdpy --verbose contract call ${ADDRESS} \
+  --recall-nonce --pem=${ALICE} --gas-limit=${GAS_LIMIT} \
+  --function="createNft" \
+  --arguments ${CREATE_ARGS} \
+  --proxy=${PROXY} --chain=${CHAINID} --send \
+  --outfile="${MY_LOGS}/createNft.json"
 }
