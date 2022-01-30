@@ -73,7 +73,11 @@
           },
           "storage": {
             "str:nftTokenId": "str:NFT-123456",
-            "str:priceTag|u64:1": "str:EGLD1500"
+            "str:priceTag|u64:1": {
+              "1-token": "nested:str:EGLD",
+              "2-nonce": "u64:0",
+              "3-amount": "biguint:500"
+            }
           },
           "code": "file:../output/my-contract.wasm"
         },
