@@ -6,6 +6,15 @@
       "path": "02_create_nft.scen.json"
     },
     {
+      "step": "setState",
+      "accounts": {
+        "address:buyer": {
+          "nonce": "0",
+          "balance": "1000"
+        }
+      }
+    },
+    {
       "step": "scCall",
       "txId": "buy-nft-wrong-amount",
       "tx": {
@@ -69,6 +78,46 @@
         "message": "",
         "gas": "*",
         "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "address:buyer": {
+          "nonce": "*",
+          "balance": "500",
+          "esdt": {
+            "str:NFT-123456": {
+              "instances": [
+                {
+                  "nonce": "1",
+                  "balance": "1",
+                  "creator": "sc:my-contract",
+                  "royalties": "5000",
+                  "uri": "str:www.mycoolnft.com/nft1.jpg",
+                  "attributes": "u64:100,000"
+                }
+              ]
+            }
+          }
+        },
+        "sc:my-contract": {
+          "nonce": "0",
+          "balance": "0",
+          "esdt": {
+            "str:NFT-123456": {
+              "lastNonce": "1",
+              "roles": [
+                "ESDTRoleNFTCreate"
+              ]
+            }
+          },
+          "storage": {
+            "str:nftTokenId": "str:NFT-123456"
+          },
+          "code": "file:../output/my-contract.wasm"
+        },
+        "+": ""
       }
     }
   ]
