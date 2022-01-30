@@ -111,14 +111,29 @@
           "balance": "0",
           "esdt": {
             "str:NFT-123456": {
-              "lastNonce": "1",
+              "instances": [
+                {
+                  "nonce": "2",
+                  "balance": "1",
+                  "creator": "sc:my-contract",
+                  "royalties": "5000",
+                  "uri": "str:www.mycoolnft.com/nft2.jpg",
+                  "attributes": "u64:100,000"
+                }
+              ],
+              "lastNonce": "2",
               "roles": [
                 "ESDTRoleNFTCreate"
               ]
             }
           },
           "storage": {
-            "str:nftTokenId": "str:NFT-123456"
+            "str:nftTokenId": "str:NFT-123456",
+            "str:priceTag|u64:2": {
+              "1-token": "nested:str:EGLD",
+              "2-nonce": "u64:0",
+              "3-amount": "biguint:10"
+            }
           },
           "code": "file:../output/my-contract.wasm"
         },
