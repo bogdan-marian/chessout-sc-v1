@@ -17,7 +17,9 @@
           "esdt": {
             "str:NFT-123456": {
               "lastNonce": "0",
-              "roles": ["ESDTRoleNFTCreate"]
+              "roles": [
+                "ESDTRoleNFTCreate"
+              ]
             }
           },
           "storage": {
@@ -45,11 +47,36 @@
         "gasPrice": "0"
       },
       "expect": {
-        "out": ["1", "1"],
+        "out": [
+          "1",
+          "1"
+        ],
         "status": "0",
         "message": "",
         "gas": "*",
         "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:my-contract": {
+          "nonce": "0",
+          "balance": "0",
+          "esdt": {
+            "str:NFT-123456": {
+              "lastNonce": "1",
+              "roles": [
+                "ESDTRoleNFTCreate"
+              ]
+            }
+          },
+          "storage": {
+            "str:nftTokenId": "str:NFT-123456"
+          },
+          "code": "file:../output/my-contract.wasm"
+        },
+        "+": ""
       }
     }
   ]
