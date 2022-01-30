@@ -83,6 +83,11 @@
     {
       "step": "checkState",
       "accounts": {
+        "address:owner": {
+          "nonce": "*",
+          "balance": "500",
+          "storage": {}
+        },
         "address:buyer": {
           "nonce": "*",
           "balance": "500",
