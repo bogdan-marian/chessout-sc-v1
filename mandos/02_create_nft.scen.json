@@ -65,6 +65,16 @@
           "balance": "0",
           "esdt": {
             "str:NFT-123456": {
+              "instances": [
+                {
+                  "nonce": "1",
+                  "balance": "1",
+                  "creator": "sc:my-contract",
+                  "royalties": "5000",
+                  "uri": "str:www.mycoolnft.com/nft1.jpg",
+                  "attributes": "u64:100,000"
+                }
+              ],
               "lastNonce": "1",
               "roles": [
                 "ESDTRoleNFTCreate"
