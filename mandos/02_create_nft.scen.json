@@ -85,6 +85,35 @@
       }
     },
     {
+      "step": "scCall",
+      "txId": "create-NFT-3",
+      "tx": {
+        "from": "address:owner",
+        "to": "sc:my-contract",
+        "function": "createNft",
+        "arguments": [
+          "str:NFT 2",
+          "5000",
+          "str:www.mycoolnft.com/nft3.jpg",
+          "500",
+          "str:SEMIFUNG-123456",
+          "2"
+        ],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [
+          "3",
+          "3"
+        ],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
       "step": "checkState",
       "accounts": {
         "sc:my-contract": {
@@ -108,9 +137,17 @@
                   "royalties": "5000",
                   "uri": "str:www.mycoolnft.com/nft2.jpg",
                   "attributes": "u64:100,000"
+                },
+                {
+                  "nonce": "3",
+                  "balance": "1",
+                  "creator": "sc:my-contract",
+                  "royalties": "5000",
+                  "uri": "str:www.mycoolnft.com/nft3.jpg",
+                  "attributes": "u64:100,000"
                 }
               ],
-              "lastNonce": "2",
+              "lastNonce": "3",
               "roles": [
                 "ESDTRoleNFTCreate"
               ]
@@ -127,6 +164,11 @@
               "1-token": "nested:str:EGLD",
               "2-nonce": "u64:0",
               "3-amount": "biguint:10"
+            },
+            "str:priceTag|u64:3": {
+              "1-token": "nested:str:SEMIFUNG-123456",
+              "2-nonce": "u64:2",
+              "3-amount": "biguint:500"
             }
           },
           "code": "file:../output/my-contract.wasm"
