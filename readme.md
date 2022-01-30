@@ -31,3 +31,12 @@ owner: `erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th`
 contract: `erd1qqqqqqqqqqqqqpgqy5u6zj9ac0ar4e2ed2vtvltahtpnxy85d8ss528g22`
 token: `TEST001-75f6bd`
 current problem: `too much gas provided: gas needed = 3124104, gas remained = 543283186`
+
+## create struct ouside storage mapper
+```rust
+self.price_tag(token.nonce).set(PriceTag{
+   price: token.price,
+   nonce: token.nonce,
+  etc....
+});
+```
