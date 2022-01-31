@@ -20,6 +20,7 @@ ISSUE_TOKEN_ARGUMENTS="0x${TOKEN_NAME_HEX} 0x${TOKEN_TICKER_HEX}"
 
 GAS_LIMIT="60000000"
 GAS_SMALL="50000000"
+DEPLOY_GAS="65000000"
 
 listArgValues() {
   echo "${MINT_COST}"
@@ -34,7 +35,7 @@ listArgValues() {
 
 deploy() {
   erdpy --verbose contract deploy --project=${PROJECT} --recall-nonce --pem=${ALICE} \
-    --gas-limit=${GAS_LIMIT} --send --outfile="${MY_LOGS}/deploy-devnet.interaction.json" \
+    --gas-limit=${DEPLOY_GAS} --send --outfile="${MY_LOGS}/deploy-devnet.interaction.json" \
     --proxy=${PROXY} --chain=${CHAINID} || return
 
   TRANSACTION=$(erdpy data parse --file="${MY_LOGS}/deploy-devnet.interaction.json" --expression="data['emitted_tx']['hash']")
