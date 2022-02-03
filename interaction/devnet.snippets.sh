@@ -86,14 +86,19 @@ createNft() {
   --outfile="${MY_LOGS}/createNft.json"
 }
 
+getNftPrice(){
+  NFT_NONCE="3"
+  erdpy --verbose contract query ${ADDRESS} --function="getNftPrice" \
+    --arguments ${NFT_NONCE} \
+    --proxy=${PROXY}
+}
+
 buyNft(){
-  NFT_NONCE=3
-  NFT_NONCE_HEX=$(echo -n ${NFT_NONCE} | xxd -p)
-  BUY_NFT_ARGUMENTS="0x${NFT_NONCE_HEX}"
-  NFT_PRICE=$(echo '1*(10^18)' | bc)
+  NFT_PRICE="1"
+  NFT_NONCE="1"
   erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${BOGDAN} --gas-limit=${GAS_SMALL} \
     --function="buyNft" \
-    --value ${MINT_COST} \
+    --value ${NFT_PRICE} \
     --arguments ${NFT_NONCE} \
     --proxy=${PROXY} --chain=${CHAINID} --send \
     --outfile="${MY_LOGS}/buyNft.json"
