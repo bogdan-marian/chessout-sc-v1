@@ -74,7 +74,6 @@ createNft() {
   NFT_NAME_HEX=$(echo -n ${NFT_NAME} | xxd -p)
   ROYALTIES="5000"
   NFT_URL="www.mycoolnft.com/${NFT_NAME}"
-  #NFT_URL_HEX=$(echo -n "${NFT_URL}" | xxd -p)
   NFT_URL_HEX=$(echo -n "${NFT_URL}" | xxd -p)
   NFT_URL_HEX_FIX=$(echo -n ${NFT_URL_HEX} | awk '{print $1}')
   echo ${NFT_URL_HEX}
