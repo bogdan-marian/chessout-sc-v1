@@ -69,14 +69,17 @@ getTokenIdSimple() {
 }
 
 createNft() {
-  CURRENT_TIME=$(date +%s)
+  CURRENT_TIME="$(echo -n $(date +%s))"
   NFT_NAME=$(echo -n "NFT-${CURRENT_TIME}")
   NFT_NAME_HEX=$(echo -n ${NFT_NAME} | xxd -p)
   ROYALTIES="5000"
-  NFT_URL=$(echo -n "www.mycoolnft.com/${NFT_NAME}")
-  NFT_URL_HEX=$(echo -n ${NFT_URL} | xxd -p)
-  SELLING_PRICE="1"
-  CREATE_ARGS="0x${NFT_NAME_HEX} ${ROYALTIES} 0x${NFT_URL_HEX} ${SELLING_PRICE}"
+  NFT_URL="www.mycoolnft.com/${NFT_NAME}"
+  #NFT_URL_HEX=$(echo -n "${NFT_URL}" | xxd -p)
+  NFT_URL_HEX=$(echo -n "${NFT_URL}" | xxd -p)
+  NFT_URL_HEX_FIX=$(echo -n ${NFT_URL_HEX} | awk '{print $1}')
+  echo ${NFT_URL_HEX}
+  SELLING_PRICE="7"
+  CREATE_ARGS="0x${NFT_NAME_HEX} ${ROYALTIES} 0x${NFT_URL_HEX_FIX} ${SELLING_PRICE}"
 
   erdpy --verbose contract call ${ADDRESS} \
   --recall-nonce --pem=${ALICE} --gas-limit=${GAS_SMALL} \
