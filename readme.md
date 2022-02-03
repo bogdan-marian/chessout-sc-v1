@@ -28,7 +28,13 @@ erdpy --verbose wallet derive testnet-bogdan.pem --mnemonic
 
 [token name restrictions](https://docs.elrond.com/developers/esdt-tokens/#parameters-format)
 [convert hex to decimal](https://stackoverflow.com/questions/13280131/hexadecimal-to-decimal-in-shell-script/13280173#13280173)
+
+```bash
+echo $((16#0f))
+```
+
 [dev net explorer](https://devnet-explorer.elrond.com/)
+[esdt transfer with method invocation](https://docs.elrond.com/developers/esdt-tokens/#transfers-to-a-smart-contract)
 
 owner: `erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th`
 contract: `erd1qqqqqqqqqqqqqpgqy5u6zj9ac0ar4e2ed2vtvltahtpnxy85d8ss528g22`

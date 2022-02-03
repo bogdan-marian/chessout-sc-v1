@@ -21,6 +21,7 @@ ISSUE_TOKEN_ARGUMENTS="0x${TOKEN_NAME_HEX} 0x${TOKEN_TICKER_HEX}"
 GAS_LIMIT="60000000"
 GAS_SMALL="50000000"
 DEPLOY_GAS="65000000"
+BUY_GAS="10000000"
 
 listArgValues() {
   echo "${MINT_COST}"
@@ -96,9 +97,9 @@ getNftPrice(){
 }
 
 buyNft(){
-  NFT_PRICE="1"
-  NFT_NONCE="1"
-  erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${BOGDAN} --gas-limit=${GAS_SMALL} \
+  NFT_PRICE="7"
+  NFT_NONCE="17"
+  erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${BOGDAN} --gas-limit=${BUY_GAS} \
     --function="buyNft" \
     --value ${NFT_PRICE} \
     --arguments ${NFT_NONCE} \
