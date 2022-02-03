@@ -15,6 +15,7 @@ cargo new meta
 ```
 
 ## random nonce note
+
 ```
 Martin Wagner | CIO | Knights of Cathena, [20.01.22 21:53]
 [In reply to Bogdan Oloeriu]
@@ -45,8 +46,17 @@ current problem: `too much gas provided: gas needed = 3124104, gas remained = 54
 
 ```rust
 self .price_tag(token.nonce).set(PriceTag{
-   price: token.price,
-   nonce: token.nonce,
-  etc....
+price: token.price,
+nonce: token.nonce,
+etc....
 });
 ```
+
+## burn nft the fast way
+
+If you only want to decrease the circulating supply, you can simply send your ESDT to the burn address:
+`erd1deaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaddeaqtv0gag`
+
+btw, I don't know how the total supply of an ESDT is calculated on Elrond (Total minted = total supply?, if so, burning
+locally doesn't decrease the total ESDT minted so doesn't decrease the total supply)
+
