@@ -1,6 +1,6 @@
 PROJECT="${PWD}"
 ALICE="${PROJECT}/wallets/users/alice.pem"
-# ALICE="${PROJECT}/wallets/users/testnet-bogdan.pem"
+BOGDAN="${PROJECT}/wallets/users/testnet-bogdan.pem"
 ADDRESS=$(erdpy data load --key=address-devnet)
 DEPLOY_TRANSACTION=$(erdpy data load --key=deployTransaction-devnet)
 PROXY=https://devnet-gateway.elrond.com
@@ -75,7 +75,7 @@ createNft() {
   ROYALTIES="5000"
   NFT_URL=$(echo -n "www.mycoolnft.com/${NFT_NAME}")
   NFT_URL_HEX=$(echo -n ${NFT_URL} | xxd -p)
-  SELLING_PRICE="500"
+  SELLING_PRICE="1"
   CREATE_ARGS="0x${NFT_NAME_HEX} ${ROYALTIES} 0x${NFT_URL_HEX} ${SELLING_PRICE}"
 
   erdpy --verbose contract call ${ADDRESS} \
@@ -84,6 +84,19 @@ createNft() {
   --arguments ${CREATE_ARGS} \
   --proxy=${PROXY} --chain=${CHAINID} --send \
   --outfile="${MY_LOGS}/createNft.json"
+}
+
+buyNft(){
+  NFT_NONCE=3
+  NFT_NONCE_HEX=$(echo -n ${NFT_NONCE} | xxd -p)
+  BUY_NFT_ARGUMENTS="0x${NFT_NONCE_HEX}"
+  NFT_PRICE=$(echo '1*(10^18)' | bc)
+  erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${BOGDAN} --gas-limit=${GAS_SMALL} \
+    --function="buyNft" \
+    --value ${MINT_COST} \
+    --arguments ${NFT_NONCE} \
+    --proxy=${PROXY} --chain=${CHAINID} --send \
+    --outfile="${MY_LOGS}/buyNft.json"
 }
 
 getTokenId() {
