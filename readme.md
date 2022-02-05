@@ -61,3 +61,26 @@ If you only want to decrease the circulating supply, you can simply send your ES
 btw, I don't know how the total supply of an ESDT is calculated on Elrond (Total minted = total supply?, if so, burning
 locally doesn't decrease the total ESDT minted so doesn't decrease the total supply)
 
+## how to encode some parameters
+
+```rust
+//Martin Wagner | CIO | Knights of Cathena, [18.12.21 15:31]
+//And here some code :)
+
+const payload = TransactionPayload.contractCall()
+    .setFunction(new ContractFunction("ESDTNFTTransfer"))
+    .setArgs([
+                 BytesValue.fromUTF8(this.config.nftToken),
+                 new U64Value(nonce),
+             new BigUIntValue(new BigNumber(1)),
+             new AddressValue(this.smartContract.getAddress()),
+             BytesValue.fromUTF8("myFunction"),
+             new BigUIntValue(myFunctionArg),
+             ])
+    .build();
+return new Transaction({
+receiver: sender,
+gasLimit: new GasLimit(5000000),
+data: payload,
+});
+```
