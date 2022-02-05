@@ -11,9 +11,7 @@ elrond_wasm_node::wasm_endpoints! {
         callBack
         buyNft
         createNft
-        getCounter
         getTokenId
-        increment
         issueToken
         setLocalRoles
     )

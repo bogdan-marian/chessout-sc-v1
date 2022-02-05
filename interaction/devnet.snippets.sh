@@ -98,7 +98,7 @@ getNftPrice(){
 
 buyNft(){
   NFT_PRICE="7"
-  NFT_NONCE="17"
+  NFT_NONCE="1"
   erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${BOGDAN} --gas-limit=${BUY_GAS} \
     --function="buyNft" \
     --value ${NFT_PRICE} \
