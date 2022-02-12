@@ -31,6 +31,9 @@
         "to": "sc:my-contract",
         "function": "createTournament",
         "arguments": [
+          "str:tournament-01",
+          "str:EGLD",
+          "10"
         ],
         "gasLimit": "100,000,000",
         "gasPrice": "0"
@@ -48,7 +51,17 @@
         "sc:my-contract": {
           "nonce": "0",
           "balance": "0",
-          "code": "file:../output/my-contract.wasm"
+          "code": "file:../output/my-contract.wasm",
+          "storage": {
+            "str:tournamentInfo|nested:str:tournament-01": {
+              "0-tournament_id": "nested:str:tournament-01",
+              "1-token_identifier": "nested:str:EGLD",
+              "2-sing_in_price": "biguint:10",
+              "3-manager": "address:manager",
+              "4-funds": "biguint:0",
+              "5-participants": "nested:"
+            }
+          }
         },
         "+": ""
       }

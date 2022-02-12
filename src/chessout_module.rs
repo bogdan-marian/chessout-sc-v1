@@ -9,7 +9,6 @@ pub struct TournamentInfo<M: ManagedTypeApi> {
     pub token_identifier: TokenIdentifier<M>,
     pub sing_in_price: BigUint<M>,
     pub manager: ManagedAddress<M>,
-    pub timestamp: u64,
     pub funds: BigUint<M>,
     pub participants: Vec<ManagedAddress<M>>,
 }
@@ -35,7 +34,6 @@ pub trait ChessoutModule {
             token_identifier: (_token_identifier),
             sing_in_price: (_sing_in_price),
             manager: (_manager),
-            timestamp: (_timestamp),
             funds: (_funds),
             participants: (_participants),
         };

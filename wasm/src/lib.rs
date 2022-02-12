@@ -15,7 +15,6 @@ elrond_wasm_node::wasm_endpoints! {
         getTokenId
         getTournamentInfo
         issueToken
-        ping
         setLocalRoles
     )
 }
