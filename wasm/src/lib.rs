@@ -11,8 +11,11 @@ elrond_wasm_node::wasm_endpoints! {
         callBack
         buyNft
         createNft
+        createTournament
         getTokenId
+        getTournamentInfo
         issueToken
+        ping
         setLocalRoles
     )
 }

@@ -17,7 +17,7 @@ pub struct TournamentInfo<M: ManagedTypeApi> {
 
 #[elrond_wasm::module]
 pub trait ChessoutModule {
-    #[allow(clippy::too_many_arguments)]
+    #[endpoint(createTournament)]
     fn create_tournament(
         &self,
         _tournament_id: BoxedBytes,
@@ -43,6 +43,7 @@ pub trait ChessoutModule {
 
         Ok(())
     }
+
 
     // storage
 

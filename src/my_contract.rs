@@ -9,9 +9,7 @@ mod chessout_module;
 
 
 #[elrond_wasm::derive::contract]
-pub trait MyContract :nft_module::NftModule{
-
+pub trait MyContract: nft_module::NftModule + chessout_module::ChessoutModule {
     #[init]
-    fn init(&self) {
-    }
+    fn init(&self) {}
 }

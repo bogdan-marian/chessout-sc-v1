@@ -1,0 +1,57 @@
+{
+  "name": "create nfts",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "01_deploy.scen.json"
+    },
+    {
+      "step": "setState",
+      "currentBlockInfo": {
+        "blockTimestamp": "100,000"
+      },
+      "accounts": {
+        "sc:my-contract": {
+          "nonce": "0",
+          "balance": "0",
+          "code": "file:../output/my-contract.wasm",
+          "owner": "address:owner"
+        },
+        "address:manager": {
+          "nonce": "0",
+          "balance": "1000"
+        }
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "call-createTournament",
+      "tx": {
+        "from": "address:manager",
+        "to": "sc:my-contract",
+        "function": "createTournament",
+        "arguments": [
+        ],
+        "gasLimit": "100,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:my-contract": {
+          "nonce": "0",
+          "balance": "0",
+          "code": "file:../output/my-contract.wasm"
+        },
+        "+": ""
+      }
+    }
+  ]
+}
