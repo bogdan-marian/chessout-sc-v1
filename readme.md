@@ -84,3 +84,20 @@ gasLimit: new GasLimit(5000000),
 data: payload,
 });
 ```
+
+## get tokenId explained
+
+## hex conversions
+
+```bash
+
+# assign text value
+TOURNAMENT_ID="tournament-02"
+
+# convert to hex
+echo -n ${TOURNAMENT_ID} | xxd -p
+
+# revers from hex to asci
+xxd -r -p <<<746f75726e616d656e742d3032
+
+```

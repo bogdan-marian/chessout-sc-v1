@@ -107,6 +107,19 @@ buyNft(){
     --outfile="${MY_LOGS}/buyNft.json"
 }
 
+getTokenId() {
+  erdpy --verbose contract query ${ADDRESS} --function="getTokenId" \
+    --proxy=${PROXY} \
+    | tee "${MY_LOGS}/getTokenId.json" \
+    | grep hex \
+    | awk -F "\"" '{print$4}' \
+    | xxd -r -p \
+    | tee "${MY_LOGS}/getTokenId.txt"; \
+    echo ""
+}
+
+# tournament section
+
 TOURNAMENT_ID="tournament-02"
 TOURNAMENT_ID_HEX=$(echo -n ${TOURNAMENT_ID} | xxd -p)
 TOKEN_IDENTIFIER="EGLD"
@@ -125,17 +138,4 @@ getTournamentInfo(){
   erdpy --verbose contract query ${ADDRESS} --function="getTournamentInfo" \
   --arguments "0x${TOURNAMENT_ID_HEX}" \
   --proxy=${PROXY}
-}
-
-
-
-getTokenId() {
-  erdpy --verbose contract query ${ADDRESS} --function="getTokenId" \
-    --proxy=${PROXY} \
-    | tee "${MY_LOGS}/getTokenId.json"  `# log to file and also to standard out`\
-    | grep hex                          `# select the hex line`\
-    | awk -F "\"" '{print$4}'           `# split by quotation char`\
-    | xxd -r -p                         `# convert from hex to string`\
-    | tee "${MY_LOGS}/getTokenId.txt";  `# log to file and also to standard out`\
-    echo ""
 }
