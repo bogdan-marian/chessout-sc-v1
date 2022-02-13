@@ -27,6 +27,17 @@ it's the nonce of the nft you just created :) It will start at 1 and increase fo
 testnet-bogdan: `erd1mhhnd3ux2duwc9824dhelherdj3gvzn04erdw29l8cyr5z8fpa7quda68z`
 erdpy --verbose wallet derive testnet-bogdan.pem --mnemonic
 
+test project: `mysandbox-v3`
+
+```bash
+gcloud auth login
+GOOGLE_CLOUD_PROJECT="mysandbox-v3"
+gcloud config set project ${GOOGLE_CLOUD_PROJECT}
+gcloud config set compute/zone europe-west1-b
+gcloud services enable run.googleapis.com
+
+```
+
 [token name restrictions](https://docs.elrond.com/developers/esdt-tokens/#parameters-format)
 [convert hex to decimal](https://stackoverflow.com/questions/13280131/hexadecimal-to-decimal-in-shell-script/13280173#13280173)
 [upgrade contract](https://github.com/ElrondNetwork/elrond-sdk-erdpy/blob/main/erdpy/CLI.md#contractupgrade)
