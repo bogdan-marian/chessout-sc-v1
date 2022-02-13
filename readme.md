@@ -86,6 +86,18 @@ data: payload,
 ```
 
 ## get tokenId explained
+```bash
+getTokenId() {
+  erdpy --verbose contract query ${ADDRESS} --function="getTokenId" \
+    --proxy=${PROXY} \
+    | tee "${MY_LOGS}/getTokenId.json"  `# log to file and also to standard out`\
+    | grep hex                          `# select the hex line`\
+    | awk -F "\"" '{print$4}'           `# split by quotation char`\
+    | xxd -r -p                         `# convert from hex to string`\
+    | tee "${MY_LOGS}/getTokenId.txt";  `# log to file and also to standard out`\
+    echo ""
+}
+```
 
 ## hex conversions
 
