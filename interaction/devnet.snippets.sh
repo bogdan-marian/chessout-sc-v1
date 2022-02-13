@@ -123,7 +123,8 @@ createTournament(){
 
 getTournamentInfo(){
   erdpy --verbose contract query ${ADDRESS} --function="getTournamentInfo" \
-  --arguments "0x${TOURNAMENT_ID_HEX}"
+  --arguments "0x${TOURNAMENT_ID_HEX}" \
+  --proxy=${PROXY} --chain=${CHAINID} --send \
 }
 
 
