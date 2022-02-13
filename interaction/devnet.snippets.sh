@@ -20,7 +20,7 @@ ISSUE_TOKEN_ARGUMENTS="0x${TOKEN_NAME_HEX} 0x${TOKEN_TICKER_HEX}"
 
 GAS_LIMIT="60000000"
 GAS_SMALL="50000000"
-DEPLOY_GAS="65000000"
+DEPLOY_GAS="75000000"
 BUY_GAS="10000000"
 
 listArgValues() {
@@ -106,6 +106,27 @@ buyNft(){
     --proxy=${PROXY} --chain=${CHAINID} --send \
     --outfile="${MY_LOGS}/buyNft.json"
 }
+
+TOURNAMENT_ID="tournament-02"
+TOURNAMENT_ID_HEX=$(echo -n ${TOURNAMENT_ID} | xxd -p)
+TOKEN_IDENTIFIER="EGLD"
+TOKEN_IDENTIFIER_HEX=$(echo -n ${TOKEN_IDENTIFIER} | xxd -p)
+SIGN_IN_PRICE="11"
+createTournament(){
+  CREATE_TOURNAMENT_ARGS="0x${TOURNAMENT_ID_HEX} 0x${TOKEN_IDENTIFIER_HEX} ${SIGN_IN_PRICE}"
+  erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${BOGDAN} --gas-limit=${BUY_GAS} \
+      --function="createTournament" \
+      --arguments ${CREATE_TOURNAMENT_ARGS} \
+      --proxy=${PROXY} --chain=${CHAINID} --send \
+      --outfile="${MY_LOGS}/createTournament.json"
+}
+
+getTournamentInfo(){
+  erdpy --verbose contract query ${ADDRESS} --function="getTournamentInfo" \
+  --arguments "0x${TOURNAMENT_ID_HEX}"
+}
+
+
 
 getTokenId() {
   erdpy --verbose contract query ${ADDRESS} --function="getTokenId" \
