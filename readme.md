@@ -39,6 +39,7 @@ echo $((16#0f))
 [esdt transfer with method invocation](https://docs.elrond.com/developers/esdt-tokens/#transfers-to-a-smart-contract)
 [gasScheduleV5.toml](https://github.com/ElrondNetwork/elrond-go/blob/master/cmd/node/config/gasSchedules/gasScheduleV5.toml)
 [node server side](https://shiffman.net/a2z/server-node/#:~:text=%E2%80%A2-,Node.,in%20a%20file%20called%20hello.)
+[google cloud run](https://codelabs.developers.google.com/codelabs/cloud-run-hello#0)
 
 owner: `erd1qyu5wthldzr8wx5c9ucg8kjagg0jfs53s8nr3zpz3hypefsdd8ssycr6th`
 contract: `erd1qqqqqqqqqqqqqpgqy5u6zj9ac0ar4e2ed2vtvltahtpnxy85d8ss528g22`
