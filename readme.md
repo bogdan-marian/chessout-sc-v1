@@ -128,3 +128,10 @@ echo -n ${TOURNAMENT_ID} | xxd -p
 xxd -r -p <<<746f75726e616d656e742d3032
 
 ```
+
+## get current tranzaction id
+
+```rust
+blockchain().get_tx_hash()
+```
+
