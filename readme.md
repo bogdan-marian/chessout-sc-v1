@@ -41,6 +41,7 @@ gcloud services enable run.googleapis.com
 [token name restrictions](https://docs.elrond.com/developers/esdt-tokens/#parameters-format)
 [convert hex to decimal](https://stackoverflow.com/questions/13280131/hexadecimal-to-decimal-in-shell-script/13280173#13280173)
 [upgrade contract](https://github.com/ElrondNetwork/elrond-sdk-erdpy/blob/main/erdpy/CLI.md#contractupgrade)
+[script for distributing tokens](https://github.com/Combased/elrond-lkmex-distribution)
 
 ```bash
 echo $((16#0f))

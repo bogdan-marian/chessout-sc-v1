@@ -120,7 +120,7 @@ getTokenId() {
 
 # tournament section
 
-TOURNAMENT_ID="tournament-02"
+TOURNAMENT_ID="tournament-03"
 TOURNAMENT_ID_HEX=$(echo -n ${TOURNAMENT_ID} | xxd -p)
 TOKEN_IDENTIFIER="EGLD"
 TOKEN_IDENTIFIER_HEX=$(echo -n ${TOKEN_IDENTIFIER} | xxd -p)
