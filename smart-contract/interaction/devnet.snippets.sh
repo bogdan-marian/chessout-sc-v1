@@ -22,6 +22,7 @@ GAS_LIMIT="60000000"
 GAS_SMALL="50000000"
 DEPLOY_GAS="75000000"
 BUY_GAS="10000000"
+GAS_ISSUE_TOKEN="75000000"
 
 listArgValues() {
   echo "${MINT_COST}"
@@ -50,11 +51,27 @@ deploy() {
 }
 
 issueToken() {
-  erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${ALICE} --gas-limit=60000000 --function="issueToken" \
+  erdpy --verbose contract call ${ADDRESS} --recall-nonce --pem=${ALICE} --gas-limit=${GAS_ISSUE_TOKEN} --function="issueToken" \
     --value ${MINT_COST} \
     --arguments ${ISSUE_TOKEN_ARGUMENTS} \
     --proxy=${PROXY} --chain=${CHAINID} --send \
     --outfile="${MY_LOGS}/issueToken.json"
+}
+
+getTokenId() {
+  erdpy --verbose contract query ${ADDRESS} --function="getTokenId" \
+    --proxy=${PROXY} \
+    | tee "${MY_LOGS}/getTokenId.json" \
+    | grep hex \
+    | awk -F "\"" '{print$4}' \
+    | xxd -r -p \
+    | tee "${MY_LOGS}/getTokenId.txt"; \
+    echo ""
+}
+
+getTokenIdSimple() {
+  erdpy --verbose contract query ${ADDRESS} --function="getTokenId" \
+    --proxy=${PROXY}
 }
 
 setLocalRoles(){
@@ -64,10 +81,7 @@ setLocalRoles(){
     --outfile="${MY_LOGS}/setLocalRoles.json"
 }
 
-getTokenIdSimple() {
-  erdpy --verbose contract query ${ADDRESS} --function="getTokenId" \
-    --proxy=${PROXY}
-}
+
 
 createNft() {
   CURRENT_TIME="$(echo -n $(date +%s))"
@@ -90,7 +104,7 @@ createNft() {
 }
 
 getNftPrice(){
-  NFT_NONCE="3"
+  NFT_NONCE="1"
   erdpy --verbose contract query ${ADDRESS} --function="getNftPrice" \
     --arguments ${NFT_NONCE} \
     --proxy=${PROXY}
@@ -107,16 +121,7 @@ buyNft(){
     --outfile="${MY_LOGS}/buyNft.json"
 }
 
-getTokenId() {
-  erdpy --verbose contract query ${ADDRESS} --function="getTokenId" \
-    --proxy=${PROXY} \
-    | tee "${MY_LOGS}/getTokenId.json" \
-    | grep hex \
-    | awk -F "\"" '{print$4}' \
-    | xxd -r -p \
-    | tee "${MY_LOGS}/getTokenId.txt"; \
-    echo ""
-}
+
 
 # tournament section
 

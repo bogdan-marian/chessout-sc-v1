@@ -195,6 +195,22 @@ pub trait NftModule {
         )
     }
 
+    #[allow(clippy::type_complexity)]
+    #[view(getNftPrice)]
+    fn get_nft_price(
+        &self,
+        nft_nonce: u64,
+    ) -> OptionalResult<MultiResult3<TokenIdentifier, u64, BigUint>> {
+        if self.price_tag(nft_nonce).is_empty() {
+            // NFT was already sold
+            OptionalResult::None
+        } else {
+            let price_tag = self.price_tag(nft_nonce).get();
+
+            OptionalResult::Some((price_tag.token, price_tag.nonce, price_tag.amount).into())
+        }
+    }
+
     #[payable("*")]
     #[endpoint(buyNft)]
     fn buy_nft(
