@@ -21,7 +21,7 @@ debug = false
 panic = "abort"
 
 [dependencies.my-contract]
-path = "../.."
+path = ".."
 
 [dependencies.elrond-wasm-node]
 version = "0.25.0"
