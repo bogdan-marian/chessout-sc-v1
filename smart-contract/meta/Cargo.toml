@@ -8,7 +8,7 @@ edition = "2021"
 [dev-dependencies]
 
 [dependencies.my-contract]
-path = ".."
+path = "../.."
 
 [dependencies.elrond-wasm]
 version = "0.25.0"

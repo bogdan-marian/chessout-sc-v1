@@ -9,7 +9,7 @@ edition = "2021"
 crate-type = [ "cdylib",]
 
 [workspace]
-members = [ ".",]
+members = ["",]
 
 [dev-dependencies]
 
@@ -21,7 +21,7 @@ debug = false
 panic = "abort"
 
 [dependencies.my-contract]
-path = ".."
+path = "../.."
 
 [dependencies.elrond-wasm-node]
 version = "0.25.0"
