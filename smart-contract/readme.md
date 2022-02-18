@@ -135,3 +135,9 @@ xxd -r -p <<<746f75726e616d656e742d3032
 blockchain().get_tx_hash()
 ```
 
+## pass lists and return lists
+
+Andrei Marinica, [18.02.22 21:39]
+[In reply to Bogdan Oloeriu]
+Use a VecMapper. It does the same as you wrote there, but additionally it keeps the last inserted id and allows you to
+iterate over them
