@@ -3,7 +3,7 @@ use elrond_wasm::elrond_codec::TopEncode;
 elrond_wasm::imports!();
 elrond_wasm::derive_imports!();
 
-#[derive(TypeAbi, TopEncode, TopDecode)]
+#[derive(TypeAbi, TopEncode, TopDecode, ManagedVecItem, NestedEncode, NestedDecode)]
 pub struct TournamentInfo<M: ManagedTypeApi> {
     pub tournament_id: BoxedBytes,
     pub token_identifier: TokenIdentifier<M>,
