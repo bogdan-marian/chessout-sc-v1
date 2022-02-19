@@ -1,7 +1,7 @@
+use elrond_wasm::elrond_codec::TopEncode;
+
 elrond_wasm::imports!();
 elrond_wasm::derive_imports!();
-
-use elrond_wasm::elrond_codec::TopEncode;
 
 #[derive(TypeAbi, TopEncode, TopDecode)]
 pub struct TournamentInfo<M: ManagedTypeApi> {
@@ -42,6 +42,16 @@ pub trait ChessoutModule {
         Ok(())
     }
 
+    #[view(getTournamentInfoList)]
+    fn get_tournament_info_list(&self, idList: ManagedVarArgs<BoxedBytes>)
+                                -> ManagedVec<TournamentInfo<Self::Api>> {
+        let mut v: ManagedVec<TournamentInfo> = ManagedVec::new();
+        for vi in idList {
+            let info = self.tournament_info(vi);
+            v.push(info);
+        }
+        return v;
+    }
 
     // storage
 

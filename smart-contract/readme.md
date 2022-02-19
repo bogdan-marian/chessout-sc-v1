@@ -141,3 +141,4 @@ Andrei Marinica, [18.02.22 21:39]
 [In reply to Bogdan Oloeriu]
 Use a VecMapper. It does the same as you wrote there, but additionally it keeps the last inserted id and allows you to
 iterate over them
+[single value mapper vs VecMapper](https://docs.elrond.com/developers/developer-reference/smart-contract-developer-best-practices/#singlevaluemapper-vs-vecmapper)
