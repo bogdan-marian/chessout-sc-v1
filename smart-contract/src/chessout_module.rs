@@ -1,11 +1,9 @@
-use elrond_wasm::elrond_codec::TopEncode;
-
 elrond_wasm::imports!();
 elrond_wasm::derive_imports!();
 
 #[derive(TypeAbi, TopEncode, TopDecode, ManagedVecItem, NestedEncode, NestedDecode)]
 pub struct TournamentInfo<M: ManagedTypeApi> {
-    pub tournament_id: BoxedBytes,
+    pub tournament_id: ManagedBuffer<M>,
     pub token_identifier: TokenIdentifier<M>,
     pub sing_in_price: BigUint<M>,
     pub manager: ManagedAddress<M>,
@@ -19,7 +17,7 @@ pub trait ChessoutModule {
     #[endpoint(createTournament)]
     fn create_tournament(
         &self,
-        _tournament_id: BoxedBytes,
+        _tournament_id: ManagedBuffer,
         _token_identifier: TokenIdentifier,
         _sing_in_price: BigUint,
     ) -> SCResult<()> {
@@ -43,10 +41,10 @@ pub trait ChessoutModule {
     }
 
     #[view(getTournamentInfoList)]
-    fn get_tournament_info_list(&self, idList: ManagedVarArgs<BoxedBytes>)
+    fn get_tournament_info_list(&self, #[var_args] id_list: ManagedVarArgs<ManagedBuffer>)
                                 -> ManagedVec<TournamentInfo<Self::Api>> {
         let mut v: ManagedVec<TournamentInfo<Self::Api>> = ManagedVec::new();
-        for vi in idList {
+        for vi in id_list {
             let info = self.tournament_info(&vi);
             v.push(info.get());
         }
@@ -57,5 +55,5 @@ pub trait ChessoutModule {
 
     #[view(getTournamentInfo)]
     #[storage_mapper("tournamentInfo")]
-    fn tournament_info(&self, tournament_id: &BoxedBytes) -> SingleValueMapper<TournamentInfo<Self::Api>>;
+    fn tournament_info(&self, tournament_id: &ManagedBuffer) -> SingleValueMapper<TournamentInfo<Self::Api>>;
 }

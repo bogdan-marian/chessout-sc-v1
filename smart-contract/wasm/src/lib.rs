@@ -15,6 +15,7 @@ elrond_wasm_node::wasm_endpoints! {
         getNftPrice
         getTokenId
         getTournamentInfo
+        getTournamentInfoList
         issueToken
         setLocalRoles
     )
