@@ -245,6 +245,17 @@ async function getTournamentInfoList() {
     let response = interaction.interpretQueryResponse(queryResponse);
     console.log(response);
 
+    console.log("--------------------List iteration -------------");
+    let myType = response.firstValue.getType();
+    console.log(myType);
+
+    let myList = response.firstValue.valueOf();
+    console.log(myList);
+
+    myList.forEach((element) => {
+      let bufferedId = element.tournament_id;
+      console.log(bufferedId);
+    });
     // End of queryCrowdFund()
     let stamp = Date();
     console.log("End of query crowdfund " + stamp);
