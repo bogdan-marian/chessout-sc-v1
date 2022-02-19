@@ -45,9 +45,9 @@ pub trait ChessoutModule {
     #[view(getTournamentInfoList)]
     fn get_tournament_info_list(&self, idList: ManagedVarArgs<BoxedBytes>)
                                 -> ManagedVec<TournamentInfo<Self::Api>> {
-        let mut v: ManagedVec<TournamentInfo> = ManagedVec::new();
+        let mut v: ManagedVec<TournamentInfo<Self::Api>> = ManagedVec::new();
         for vi in idList {
-            let info = self.tournament_info(vi);
+            let info = self.tournament_info(&vi);
             v.push(info);
         }
         return v;
