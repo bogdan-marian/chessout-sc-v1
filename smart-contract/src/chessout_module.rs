@@ -10,7 +10,7 @@ pub struct TournamentInfo<M: ManagedTypeApi> {
     pub sing_in_price: BigUint<M>,
     pub manager: ManagedAddress<M>,
     pub funds: BigUint<M>,
-    pub participants: Vec<ManagedAddress<M>>,
+    pub participants: ManagedVec<M, ManagedAddress<M>>,
 }
 
 
@@ -27,7 +27,7 @@ pub trait ChessoutModule {
         let _timestamp = self.blockchain().get_block_timestamp();
         let _manager: ManagedAddress = self.blockchain().get_caller();
         let _funds: BigUint = BigUint::zero();
-        let _participants: Vec<ManagedAddress> = Vec::new();
+        let _participants: ManagedVec<ManagedAddress> = ManagedVec::new();
 
         let info = TournamentInfo {
             tournament_id: (_tournament_id),
@@ -48,7 +48,7 @@ pub trait ChessoutModule {
         let mut v: ManagedVec<TournamentInfo<Self::Api>> = ManagedVec::new();
         for vi in idList {
             let info = self.tournament_info(&vi);
-            v.push(info);
+            v.push(info.get());
         }
         return v;
     }
