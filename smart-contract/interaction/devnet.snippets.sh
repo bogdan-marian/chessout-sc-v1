@@ -125,7 +125,7 @@ buyNft(){
 
 # tournament section
 
-TOURNAMENT_ID="tournament-03"
+TOURNAMENT_ID="tournament-02"
 TOURNAMENT_ID_HEX=$(echo -n ${TOURNAMENT_ID} | xxd -p)
 TOKEN_IDENTIFIER="EGLD"
 TOKEN_IDENTIFIER_HEX=$(echo -n ${TOKEN_IDENTIFIER} | xxd -p)
@@ -143,4 +143,16 @@ getTournamentInfo(){
   erdpy --verbose contract query ${ADDRESS} --function="getTournamentInfo" \
   --arguments "0x${TOURNAMENT_ID_HEX}" \
   --proxy=${PROXY}
+}
+
+getTournamentInfoList(){
+  TOURNAMENT_ID_A="tournament-01"
+  TOURNAMENT_ID_A_HEX=$(echo -n ${TOURNAMENT_ID_A} | xxd -p)
+  TOURNAMENT_ID_B="tournament-02"
+  TOURNAMENT_ID_B_HEX=$(echo -n ${TOURNAMENT_ID_B} | xxd -p)
+  GET_TOURANMENT_LIST_ARGS="0x${TOURNAMENT_ID_A_HEX} 0x${TOURNAMENT_ID_B_HEX}"
+  echo ${GET_TOURANMENT_LIST_ARGS}
+  erdpy --verbose contract query ${ADDRESS} --function="getTournamentInfoList" \
+    --arguments "${GET_TOURANMENT_LIST_ARGS}" \
+    --proxy=${PROXY}
 }
