@@ -254,7 +254,12 @@ async function getTournamentInfoList() {
 
     myList.forEach((element) => {
       let bufferedId = element.tournament_id;
-      console.log(bufferedId);
+
+      let stringVal = bufferedId.toString();
+      console.log(stringVal);
+
+      let signInPrice = element.sing_in_price.toFixed();
+      console.log(signInPrice);
     });
     // End of queryCrowdFund()
     let stamp = Date();
