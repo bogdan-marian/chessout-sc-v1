@@ -153,6 +153,6 @@ getTournamentInfoList(){
   GET_TOURANMENT_LIST_ARGS="0x${TOURNAMENT_ID_A_HEX} 0x${TOURNAMENT_ID_B_HEX}"
   echo ${GET_TOURANMENT_LIST_ARGS}
   erdpy --verbose contract query ${ADDRESS} --function="getTournamentInfoList" \
-    --arguments "${GET_TOURANMENT_LIST_ARGS}" \
+    --arguments "0x${TOURNAMENT_ID_A_HEX}" "0x${TOURNAMENT_ID_B_HEX}" \
     --proxy=${PROXY}
 }
