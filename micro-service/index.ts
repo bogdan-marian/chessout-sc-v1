@@ -220,7 +220,7 @@ async function getTournamentInfoList() {
     await NetworkConfig.getDefault().sync(provider);
 
     let stringAddress =
-      "erd1qqqqqqqqqqqqqpgqspt64wf2pl8ssnmsf9kth43tea2uxfjad8ss9kz69q";
+      "erd1qqqqqqqqqqqqqpgq4mhvpxl9w49z63ppuwfr74nwvudd0zdtd8ssnfgknq";
     let address = new Address(stringAddress);
 
     let abiRegistry = await AbiRegistry.load({
